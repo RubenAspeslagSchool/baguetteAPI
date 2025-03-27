@@ -8,10 +8,15 @@ namespace Baguettes.web.Controllers
     public class BaguettesController : ControllerBase
     {
         [HttpGet]
-        public GetBaguette()
+        public ActionResult GetBaguette()
         {
-            test
+            return null;
 
+        }
+        [HttpPost]
+        public ActionResult AddBaguette()
+        {
+            return null;
         }
     }
 }
