@@ -16,12 +16,11 @@ namespace Baguettes.web.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<BaguetteDto>> GetBaguette()
+        public async Task<ActionResult<IEnumerable<BaguetteDto>>> GetBaguettes()
         {
-            IEnumerable<Core.Entities.Baguette>? Baguettes = await _baguetteService.GetBaguettesAsync();
-            return Baguettes.Select(b => new BaguetteDto() { Id = b.Id, Description = b.Description, Name = b.Name});
-
+            return Ok(await _baguetteService.GetBaguettesAsync());
         }
+
         [HttpPost]
         public ActionResult AddBaguette()
         {
