@@ -3,6 +3,7 @@ using Baguettes.Core.Services;
 using Baguettes.web.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Baguettes.web.Controllers
 {
@@ -23,9 +24,14 @@ namespace Baguettes.web.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddBaguette()
+        public async Task<ActionResult> AddBaguette(BaguetteDto baguette)
         {
-            return null;
+            return Ok(await _baguetteService.CreateBaguetteAsync(new Core.Entities.Baguette()
+            {
+                Id = baguette.Id,
+                Name = baguette.Name,
+                Description = baguette.Description
+            }));
         }
 
         [HttpPut]
