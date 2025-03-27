@@ -1,4 +1,5 @@
 using Baguettes.Core.Data;
+using Baguettes.Core.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<BaguetteDbContext>(options =>
     options.UseSqlServer(connectionString));
 
+builder.Services.AddScoped<IBaguetteService, BaguetteService>();
 
 var app = builder.Build();
 

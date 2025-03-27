@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Baguettes.Core.Services;
+using Baguettes.web.Dtos;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Baguettes.web.Controllers
@@ -7,10 +9,17 @@ namespace Baguettes.web.Controllers
     [ApiController]
     public class BaguettesController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult GetBaguette()
+        private readonly IBaguetteService _baguetteService;
+        public BaguettesController(IBaguetteService baguetteService)
         {
-            return null;
+            _baguetteService = baguetteService;
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<BaguetteDto>> GetBaguette()
+        {
+            IEnumerable<Core.Entities.Baguette>? Baguettes = await _baguetteService.GetBaguettesAsync();
+            return Baguettes.Select(b => new BaguetteDto() { Id = b.Id, Description = b.Description, Name = b.Name});
 
         }
         [HttpPost]
