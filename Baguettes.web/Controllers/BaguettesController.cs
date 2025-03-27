@@ -13,5 +13,10 @@ namespace Baguettes.web.Controllers
             test
 
         }
+        [HttpPost]
+        public AddBaguette()
+        {
+
+        }
     }
 }
