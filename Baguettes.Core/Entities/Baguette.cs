@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Baguettes.Core
+namespace Baguettes.Core.Entities
 {
     public class Baguette
     {
