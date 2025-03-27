@@ -1,0 +1,6 @@
+@Baguettes.web_HostAddress = http://localhost:5150
+
+GET {{Baguettes.web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
