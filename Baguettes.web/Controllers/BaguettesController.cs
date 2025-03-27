@@ -29,16 +29,31 @@ namespace Baguettes.web.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<BaguetteDto>> UpdateBaguette(Baguette baguette)
+        public async Task<IActionResult> UpdateBaguette(BaguetteDto baguetteDto)
         {
-            var updatedBaguette = await _baguetteService.UpdateBaguetteAsync(baguette.Id, baguette);
-
-            if (updatedBaguette == null)
+            if (!await _baguetteService.DoesBaguetteIdExistAsync(baguetteDto.Id))
             {
-                return NotFound();
+                return BadRequest($"No baguette with id '{baguetteDto.Id}' found");
             }
 
-            return Ok(updatedBaguette);
+            var existingBaguette = await _baguetteService.GetByIdAsync(baguetteDto.Id);
+
+            if (existingBaguette == null)
+            {
+                return BadRequest("Baguette not found");
+            }
+
+            existingBaguette.Name = baguetteDto.Name;
+            existingBaguette.Description = baguetteDto.Description;
+
+            var success = await _baguetteService.UpdateBaguetteAsync(existingBaguette);
+
+            if (success)
+            {
+                return Ok($"Baguette {existingBaguette.Id} updated");
+            }
+
+            return BadRequest("Update failed");
         }
     }
 }

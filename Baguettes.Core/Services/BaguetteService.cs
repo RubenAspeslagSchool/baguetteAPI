@@ -20,47 +20,30 @@ namespace Baguettes.Core.Services
 
         public async Task<IEnumerable<Baguette>> GetBaguettesAsync()
         {
-            return await _baguetteDbContext.Baguettes
-                .Select(b => new Baguette
-                {
-                    Id = b.Id,
-                    Name = b.Name,
-                    Description = b.Description
-                })
-                .ToListAsync();
+            return await _baguetteDbContext.Baguettes.ToListAsync();
         }
 
         public async Task<Baguette> CreateBaguetteAsync(Baguette baguette)
         {
-            var createBaguette = new Baguette
-            {
-                Name = baguette.Name,
-                Description = baguette.Description
-            };
-
             _baguetteDbContext.Baguettes.Add(baguette);
             await _baguetteDbContext.SaveChangesAsync();
-
-            baguette.Id = baguette.Id;
-
             return baguette;
         }
 
-        public async Task<Baguette> UpdateBaguetteAsync(int id, Baguette baguette)
+        public async Task<bool> DoesBaguetteIdExistAsync(int id)
         {
-            var baguetteToUpdate = await _baguetteDbContext.Baguettes.FindAsync(id);
+            return await _baguetteDbContext.Baguettes.AnyAsync(b => b.Id == id);
+        }
 
-            if (baguette == null)
-            {
-                return null;
-            }
+        public async Task<Baguette> GetByIdAsync(int id)
+        {
+            return await _baguetteDbContext.Baguettes.FindAsync(id);
+        }
 
-            baguette.Name = baguette.Name;
-            baguette.Description = baguette.Description;
-
-            await _baguetteDbContext.SaveChangesAsync();
-
-            return baguette;
+        public async Task<bool> UpdateBaguetteAsync(Baguette baguette)
+        {
+            _baguetteDbContext.Baguettes.Update(baguette);
+            return await _baguetteDbContext.SaveChangesAsync() > 0;
         }
     }
 }
