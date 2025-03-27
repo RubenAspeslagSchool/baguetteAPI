@@ -10,6 +10,7 @@ namespace Baguettes.web.Controllers
         [HttpGet]
         public GetBaguette()
         {
+            test
 
         }
     }
