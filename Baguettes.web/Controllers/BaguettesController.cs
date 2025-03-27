@@ -1,4 +1,5 @@
-﻿using Baguettes.Core.Services;
+﻿using Baguettes.Core.Entities;
+using Baguettes.Core.Services;
 using Baguettes.web.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,19 @@ namespace Baguettes.web.Controllers
         public ActionResult AddBaguette()
         {
             return null;
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<BaguetteDto>> UpdateBaguette(Baguette baguette)
+        {
+            var updatedBaguette = await _baguetteService.UpdateBaguetteAsync(baguette.Id, baguette);
+
+            if (updatedBaguette == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(updatedBaguette);
         }
     }
 }
