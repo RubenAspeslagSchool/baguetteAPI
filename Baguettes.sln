@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35818.85 d17.13
+VisualStudioVersion = 17.13.35818.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baguettes.web", "Baguettes.web\Baguettes.web.csproj", "{F67F24F5-FCE2-4D22-93D7-934DC51210A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baguettes.Core", "Baguettes.Core\Baguettes.Core.csproj", "{1B6D5498-C0AE-4B74-A81C-BA59FC6D7B61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F67F24F5-FCE2-4D22-93D7-934DC51210A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F67F24F5-FCE2-4D22-93D7-934DC51210A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F67F24F5-FCE2-4D22-93D7-934DC51210A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B6D5498-C0AE-4B74-A81C-BA59FC6D7B61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B6D5498-C0AE-4B74-A81C-BA59FC6D7B61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B6D5498-C0AE-4B74-A81C-BA59FC6D7B61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B6D5498-C0AE-4B74-A81C-BA59FC6D7B61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
